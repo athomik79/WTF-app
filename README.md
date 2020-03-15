@@ -25,3 +25,5 @@ We plan to use zip code information to retrieve the information with these APIs
 ### Next Steps: Continue to work on next steps, implementing APIs and UI
 
 ### Initial Wireframe:
+
+![wtf_app_wireframe_overview_2](https://user-images.githubusercontent.com/55367871/76712536-44c27400-66f0-11ea-89f7-3833a844d639.png)
