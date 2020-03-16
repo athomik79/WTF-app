@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Restaurant Data</title>
+</head>
+
+<body>
+  <H1>Restaurant API Information</H1>
+  <div class="name"></div>
+  <div class="address"></div>
+  <div class="phone"></div>
+  
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script>
+  var settings = {
+	"async": true,
+	"crossDomain": true,
+	"url": "https://us-restaurant-menus.p.rapidapi.com/restaurants/zip_code/20148?page=1",
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-host": "us-restaurant-menus.p.rapidapi.com",
+		"x-rapidapi-key": "b21fc3e940mshe309850232bdc1ap11ff86jsncc48faf41fcd"
+	}
+}
+
+$.ajax(settings).then(function (response) {
+	console.log(response);
+    $(".name").text("Name: " + response.result.data[0].restaurant_name);
+    $(".address").text("Address: " + response.result.data[0].address.formatted);
+    $(".phone").text("Phone: " + response.result.data[0].restaurant_phone);
+});
+  </script>
+</body>
+
+</html>
