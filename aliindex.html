@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Weather</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    
+    <header class="jumbotron">
+    <h1 class="display-5">Todays Weather</h1>
+    <p id="currentDay"></p>
+    </header>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2" id="one">
+                <div id="icon"><img id="img" src="" alt="Weather Icon"></div>
+                <p id="desc"></p>
+                <p id="main"></p>
+                <p id="min"></p>
+                <p id="max"></p>
+            </div>
+            <div class="col-sm-2" id="two">
+                <br><br>
+                <div id="Ticon"><img id="Timg" src="" alt="Weather Icon"></div>
+                <p id="Tdesc"></p>
+                <p id="Tmain"></p>
+                <p id="Tdate"></p>
+            </div>
+            <div class="col-sm-2" id="three">
+                <br><br>
+                <div id="Micon"><img id="Mimg" src="" alt="Weather Icon"></div>
+                <p id="Mdesc"></p>
+                <p id="Mmain"></p>
+                <p id="Mdate"></p>
+            </div>
+            <div class="col-sm-2" id="four">
+                <br><br>
+                <div id="Ficon"><img id="Fimg" src="" alt="Weather Icon"></div>
+                <p id="Fdesc"></p>
+                <p id="Fmain"></p>
+                <p id="Fdate"></p>
+            </div>
+            <div class="col-sm-2" id="five">
+                <br><br>
+                <div id="Vicon"><img id="Vimg" src="" alt="Weather Icon"></div>
+                <p id="Vdesc"></p>
+                <p id="Vmain"></p>
+                <p id="Vdate"></p>
+            </div>
+            <div class="col-sm-2">
+                <br><br>
+                <p id="area"></p>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Locations</span>
+                    </div>
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="input">
+                  </div>
+                  <button id="submit">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="aliscripts.js"></script>
+</body>
+</html>
