@@ -1,0 +1,82 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WTF - Weather, Food and Travel</title>
+    <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+       #map {
+    height: 400px;
+    width: 80%;
+    margin: 30px auto;
+    }
+    </style>
+  </head>
+  <body>
+
+    <!-- Start Top Bar -->
+    <div class="top-bar">
+      <div class="top-bar-left">
+        <ul class="menu">
+          <li class="menu-text"></li>
+          <li><a href="#">Weather</a></li>
+          <li><a href="#">Transportation</a></li>
+          <li><a href="#">Food</a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- End Top Bar -->
+
+    <div class="callout large primary">
+      <div class="row column text-center">
+        <h1>WTF</h1>
+        <h2 class="subheader">Weather, Travel and Food App</h2>
+      </div>
+    </div>
+
+    <!-- We can now combine rows and columns when there's only one column in that row -->
+    <div class="row medium-8 large-7 columns">
+      <div class="blog-post text-center">
+        <h3>City and State will be displayed here</h3>
+        <div id="map"></div>
+        <input type="text" placeholder="Enter a city and state or a zip code">
+        <button type="button" class="primary button round">Find By City and State</button>
+        <p><button type="button" class="secondary button round">Find By Zip Code</button></p>
+      </div>
+
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
+   
+   <script>
+         
+         function initMap() {
+
+let location = new Object();
+navigator.geolocation.getCurrentPosition(function(pos) {
+    location.lat = pos.coords.latitude;
+    location.long = pos.coords.longitude;
+    map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: location.lat, lng: location.long },
+        zoom: 16,
+    });
+    currentLat = location.lat;
+    currentLong = location.long;
+    let currentLocation = { lat: location.lat, lng: location.long };
+    let marker = new google.maps.Marker({
+        position: currentLocation,
+        map: map
+    });
+});
+}
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBs0DXvW7g88kD3-OS7i4HXHzl_oPAP1LQ&callback=initMap">
+    </script>
+  </body>
+</html>
+
+
+
