@@ -43,16 +43,16 @@
         <h3>City and State will be displayed here</h3>
         <div id="map"></div>
         <input type="text" placeholder="Enter a city and state or a zip code">
-        <button id="find" type="button" class="primary button round">Find Me</button>
-        <!-- <p><button type="button" class="secondary button round">Find By Zip Code</button></p>
-      </div> -->
+        <button type="button" class="primary button round">Find By City and State</button>
+        <p><button type="button" class="secondary button round">Find By Zip Code</button></p>
+      </div>
 
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
    
    <script>
          
-function initMap() {
+         function initMap() {
 
 let location = new Object();
 navigator.geolocation.getCurrentPosition(function(pos) {
@@ -71,7 +71,6 @@ navigator.geolocation.getCurrentPosition(function(pos) {
     });
 });
 }
-
     </script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBs0DXvW7g88kD3-OS7i4HXHzl_oPAP1LQ&callback=initMap">
