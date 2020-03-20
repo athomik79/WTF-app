@@ -8,7 +8,7 @@
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
-       #map {
+    #map {
     height: 400px;
     width: 80%;
     margin: 30px auto;
@@ -43,8 +43,8 @@
         <h3>City and State will be displayed here</h3>
         <div id="map"></div>
         <input type="text" placeholder="Enter a city and state or a zip code">
-        <button type="button" class="primary button round">Find Location</button>
-        <p><button id="find" type="button" class="success button round">Find Me</button></p>
+        <button type="button" class="primary button round">Find Destination</button>
+        <p><button id="find" type="button" class="success button round">Current Location</button></p>
       </div>
 
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
@@ -52,7 +52,7 @@
    
    <script>
          
-function initMap() {
+$("#find").click(function initMap() {
 
 let location = new Object();
 navigator.geolocation.getCurrentPosition(function(pos) {
@@ -70,43 +70,8 @@ navigator.geolocation.getCurrentPosition(function(pos) {
         map: map
     });
 });
-}
+})
 
-// User click on button
-$("#find").click(function (){
-	if ("geolocation" in navigator){
-            navigator.geolocation.getCurrentPosition(show_location, show_error, {timeout:1000, enableHighAccuracy: true}); 
-		}else{
-			console.log("Browser doesn't support geolocation!");
-	}
-});	
-
-// Success Callback
-function show_location(position){
-	infoWindow = new google.maps.InfoWindow({map: map});
-	var pos = {lat: position.coords.latitude, lng: position.coords.longitude};
-	infoWindow.setPosition(pos);
-	infoWindow.setContent('User Location found.');
-	map.setCenter(pos);
-}
-
-// Error Callback
-function show_error(error){
-   switch(error.code) {
-        case error.PERMISSION_DENIED:
-            alert("Permission denied by user.");
-            break;
-        case error.POSITION_UNAVAILABLE:
-            alert("Location position unavailable.");
-            break;
-        case error.TIMEOUT:
-            alert("Request timeout.");
-            break;
-        case error.UNKNOWN_ERROR:
-            alert("Unknown error.");
-            break;
-    }
-}
     </script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBs0DXvW7g88kD3-OS7i4HXHzl_oPAP1LQ&callback=initMap">
