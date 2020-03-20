@@ -43,9 +43,9 @@
         <h3>City and State will be displayed here</h3>
         <div id="map"></div>
         <input type="text" placeholder="Enter a city and state or a zip code">
-        <button id="find" type="button" class="primary button round">Find Me</button>
-        <!-- <p><button type="button" class="secondary button round">Find By Zip Code</button></p>
-      </div> -->
+        <button type="button" class="primary button round">Find Location</button>
+        <p><button id="find" type="button" class="success button round">Find Me</button></p>
+      </div>
 
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
@@ -72,15 +72,16 @@ navigator.geolocation.getCurrentPosition(function(pos) {
 });
 }
 
-$("#find").click(function (){ //user click on button
+// User click on button
+$("#find").click(function (){
 	if ("geolocation" in navigator){
-			navigator.geolocation.getCurrentPosition(show_location, show_error, {timeout:1000, enableHighAccuracy: true}); //position request
+            navigator.geolocation.getCurrentPosition(show_location, show_error, {timeout:1000, enableHighAccuracy: true}); 
 		}else{
 			console.log("Browser doesn't support geolocation!");
 	}
 });	
 
-//Success Callback
+// Success Callback
 function show_location(position){
 	infoWindow = new google.maps.InfoWindow({map: map});
 	var pos = {lat: position.coords.latitude, lng: position.coords.longitude};
@@ -89,7 +90,7 @@ function show_location(position){
 	map.setCenter(pos);
 }
 
-//Error Callback
+// Error Callback
 function show_error(error){
    switch(error.code) {
         case error.PERMISSION_DENIED:
