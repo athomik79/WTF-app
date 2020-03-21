@@ -1,0 +1,42 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WTF - Weather, Food and Travel</title>
+    <!-- <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+    </style> -->
+  </head>
+  <body>
+    <body>
+        Latitude:
+        <input type="text" id="txtLatitude" value="18.92488028662047" />
+        Latitude:
+        <input type="text" id="txtLongitude" value="72.8232192993164" />
+        <input type="button" value="Get Address" onclick="GetAddress()" />
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+        <script type="text/javascript">
+            function GetAddress() {
+                var lat = parseFloat(document.getElementById("txtLatitude").value);
+                var lng = parseFloat(document.getElementById("txtLongitude").value);
+                var latlng = new google.maps.LatLng(lat, lng);
+                var geocoder = geocoder = new google.maps.Geocoder();
+                geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        if (results[1]) {
+                            alert("Location: " + results[1].formatted_address);
+                        }
+                    }
+                });
+            }
+        </script>
+        <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAriXxPMt_ogYg9aHln6QbvoT0FZxW0_og">
+        </script>
+  </body>
+</html>
+
+<!--New Google geolocation api i created:  AIzaSyAriXxPMt_ogYg9aHln6QbvoT0FZxW0_og -->

@@ -40,17 +40,16 @@
     <!-- We can now combine rows and columns when there's only one column in that row -->
     <div class="row medium-8 large-7 columns">
       <div class="blog-post text-center">
-        <h3>City and State will be displayed here</h3>
         <div id="map"></div>
-        <input type="text" placeholder="Enter a city and state or a zip code">
-        <button type="button" class="primary button round">Find Destination</button>
+        <input id="search" type="text" placeholder="Enter a city and state or a zip code">
+        <button id="destination" type="button" class="primary button round">Find Destination</button>
         <p><button id="find" type="button" class="success button round">Current Location</button></p>
       </div>
 
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
    
-   <script>
+<script>
          
 $("#find").click(function initMap() {
 
@@ -69,7 +68,77 @@ navigator.geolocation.getCurrentPosition(function(pos) {
         position: currentLocation,
         map: map
     });
+
+    google.maps.event.addListener(search, 'places_changed', function() {
+    document.getElementById("destination").onclick = function () {
+    var input = document.getElementById("search");
+
+    google.maps.event.trigger(input, "focus", {});
+    google.maps.event.trigger(input, "keydown", { keyCode: 13 });
+    google.maps.event.trigger(this, "focus", {});
+    }
+    
+    $(document).ready(function () {
+  // wire up button click
+  $('#go').click(function () {
+    // test for presence of geolocation
+    if(navigator && navigator.geolocation) {
+      // make the request for the user's position
+      navigator.geolocation.getCurrentPosition(geo_success, geo_error);
+    } else {
+      // use MaxMind IP to location API fallback
+      printAddress(geoip_latitude(), geoip_longitude(), true);
+    }
+  });
 });
+ 
+ 
+function geo_success(position) {
+  printAddress(position.coords.latitude, position.coords.longitude);
+}
+ 
+function geo_error(err) {
+  // instead of displaying an error, fall back to MaxMind IP to location library
+  printAddress(geoip_latitude(), geoip_longitude(), true);
+}
+ 
+// use Google Maps API to reverse geocode our location
+function printAddress(latitude, longitude, isMaxMind) {
+    // set up the Geocoder object
+    var geocoder = new google.maps.Geocoder();
+ 
+    // turn coordinates into an object
+    var yourLocation = new google.maps.LatLng(latitude, longitude);
+ 
+    // find out info about our location
+    geocoder.geocode({ 'latLng': yourLocation }, function (results, status) {
+    if(status == google.maps.GeocoderStatus.OK) {
+      if(results[0]) {
+        $('#results').fadeOut(function() {
+          $(this).html('<p><b>Abracadabra!</b> My guess is:</p><p><em>' + results[0].formatted_address + '</em></p>').fadeIn();
+        })
+      } else {
+        error('Google did not return any results.');
+      }
+    } else {
+      error("Reverse Geocoding failed due to: " + status);
+    }
+  });
+ 
+  // if we used MaxMind for location, add attribution link
+//   if(isMaxMind) {
+//     $('body').append('<p><a href="http://www.maxmind.com" target="_blank">IP to Location Service Provided by MaxMind</a></p>');
+//   }
+}
+ 
+function error(msg) {
+  alert(msg);
+}
+});
+    
+
+});
+
 })
 
     </script>
