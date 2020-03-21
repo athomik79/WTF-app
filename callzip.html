@@ -3,21 +3,16 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WTF - Weather, Food and Travel</title>
-    <!-- <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
-    <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-    </style> -->
+    <title>WTF - Weather, Travel, Foodl</title>
   </head>
   <body>
     <body>
         Latitude:
-        <input type="text" id="txtLatitude" value="18.92488028662047" />
+        <input type="text" id="txtLatitude" value="38.883930" />
         Latitude:
-        <input type="text" id="txtLongitude" value="72.8232192993164" />
+        <input type="text" id="txtLongitude" value="-77.173698" />
         <input type="button" value="Get Address" onclick="GetAddress()" />
-        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
         <script type="text/javascript">
             function GetAddress() {
                 var lat = parseFloat(document.getElementById("txtLatitude").value);
@@ -33,9 +28,8 @@
                 });
             }
         </script>
-        <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAriXxPMt_ogYg9aHln6QbvoT0FZxW0_og">
-        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAriXxPMt_ogYg9aHln6QbvoT0FZxW0_og&callback=initMap"
+        async defer></script>
   </body>
 </html>
 
