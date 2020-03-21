@@ -41,8 +41,8 @@
     <div class="row medium-8 large-7 columns">
       <div class="blog-post text-center">
         <div id="map"></div>
-        <input id="search" type="text" placeholder="Enter a city and state or a zip code">
-        <button id="destination" type="button" class="primary button round">Find Destination</button>
+        <input id="search" type="text" placeholder="Enter a location in the following format: City, State">
+        <button id="destination" type="button" class="primary button round">Search Destination</button>
         <p><button id="find" type="button" class="success button round">Current Location</button></p>
       </div>
 
@@ -50,13 +50,78 @@
     <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
    
 <script>
-         
+var gLat;
+var gLong;
+
+$("#destination").click(function(){alert("button has been pressed");
+var a = $("#search").val();
+var c = a.indexOf(",");
+var d = a.substr(0,c);
+var e = a.substr(c+2,a.length);
+var f = d+","+e;
+alert(f);
+
+var zip = "22030";
+var APIKey = "5142591fdf2a45c9927600243a8834f2";
+
+var queryURL =  "https://api.weatherbit.io/v2.0/forecast/daily?city="+f+"&country=US&units=i&key=" + APIKey;
+
+$.ajax({
+    url: queryURL,
+    method: "GET"
+})
+
+    .then(function(response) {
+        console.log(response);
+
+        var lat = response.lat;
+        console.log(lat);
+
+        var lon = response.lon;
+        console.log(lon);
+
+        localStorage.setItem("lattitude", JSON.stringify(lat));
+        localStorage.setItem("longitude", JSON.stringify(lon));
+
+        GetAddress (lat, lon);
+
+    // let location = new Object();
+    // navigator.geolocation.getCurrentPosition(function(pos) {
+    // location.lat = lat;
+    // gLat = location.lat;
+    // location.long = lon;
+    // gLong = location.long;
+    // map = new google.maps.Map(document.getElementById("map"), {
+    //     center: { lat: location.lat, lng: location.long },
+    //     zoom: 16,
+    // });
+    currentLat = lat;
+    currentLong = lon;
+    let currentLocation = { lat: location.lat, lng: location.long };
+    let marker = new google.maps.Marker({
+        position: currentLocation,
+        map: map
+    });
+
+    // google.maps.event.addListener(search, 'places_changed', function() {
+    // document.getElementById("destination").onclick = function () {
+    // var input = document.getElementById("search");
+
+    // google.maps.event.trigger(input, "focus", {});
+    // google.maps.event.trigger(input, "keydown", { keyCode: 13 });
+    // google.maps.event.trigger(this, "focus", {});
+    }
+    )
+});
+
 $("#find").click(function(){initMap()});
 function initMap() {
 let location = new Object();
 navigator.geolocation.getCurrentPosition(function(pos) {
     location.lat = pos.coords.latitude;
+    gLat = location.lat;
     location.long = pos.coords.longitude;
+    gLong = location.long;
     map = new google.maps.Map(document.getElementById("map"), {
         center: { lat: location.lat, lng: location.long },
         zoom: 16,
@@ -82,26 +147,26 @@ navigator.geolocation.getCurrentPosition(function(pos) {
 });
 }
 
-$("#destination").click(function GetAddress() {
-        var lat = parseFloat(document.getElementById("txtLatitude").value);
-        var lng = parseFloat(document.getElementById("txtLongitude").value);
-        var latlng = new google.maps.LatLng(lat, lng);
-        var geocoder = geocoder = new google.maps.Geocoder();
-        geocoder.geocode({ 'latLng': latlng }, function (results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-                if (results[1]) {
-                    alert("Location: " + results[1].formatted_address);
-                }
-            }
+function GetAddress(lat, lng) {
+    // var lat = gLat;
+    // var lng = gLong;
+    var apiKey = "AIzaSyAriXxPMt_ogYg9aHln6QbvoT0FZxW0_og";
+    var url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lng + "&key=" + apiKey;
+    $.getJSON(url,function (data, textStatus) {
+           var streetaddress=data.results[0].formatted_address;
+            // console.log (streetaddress);
+            console.log (data);
+          localStorage.setItem ("zipCode",data.results[0].address_components[7].short_name);
+        
         });
-    })
+    }
 
     </script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBs0DXvW7g88kD3-OS7i4HXHzl_oPAP1LQ&callback=initMap">
     </script>
-     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAriXxPMt_ogYg9aHln6QbvoT0FZxW0_og&callback=GetAddress"
-     async defer></script>
+    //  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAriXxPMt_ogYg9aHln6QbvoT0FZxW0_og&callback=GetAddress"
+    // //  async defer></script> -->
   </body>
 </html>
 
