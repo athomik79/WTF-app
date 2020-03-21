@@ -12,16 +12,18 @@
   <div class="address"></div>
   <div class="phone"></div>
   <div class="id"></div>   -->
-  <div id="foo"></div>
-
+  <div id="food"></div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script>
-  var zipCode = 20148;
-  var urlString = "https://us-restaurant-menus.p.rapidapi.com/restaurants/zip_code/" + zipCode + "?page=1";
+  // Latitude: 39.0403 Longitude: -77.4852.
+  var lat = 39.0403;
+  var lon = -77.4852;
+  var urlString = "https://us-restaurant-menus.p.rapidapi.com/restaurants/search/geo?page=1&lon=" + lon + 
+  "&lat=" + lat + "&distance=1";
   var settings = {
 	"async": true,
-	"crossDomain": true,
-	"url": urlString,
+  "crossDomain": true,
+  "url": urlString,
 	"method": "GET",
 	"headers": {
 		"x-rapidapi-host": "us-restaurant-menus.p.rapidapi.com",
@@ -30,27 +32,27 @@
 }
 
 $.ajax(settings).then(function (response) {
-	console.log(response);
+	  console.log(response);
 
     for (var i=0; i<10; i++)
     {
       var name = response.result.data[i].restaurant_name;
       var nameDiv = "<div id=\"name"+i+"\">"+ name + "</div>";
 //      console.log(nameDiv);
-      $('#foo').append(nameDiv);
+      $('#food').append(nameDiv);
       var address = response.result.data[i].address.formatted;
       var addressDiv = "<div id=\"address"+i+"\">"+ address + "</div>";
 //      console.log(addressDiv);
-      $('#foo').append(addressDiv);
+      $('#food').append(addressDiv);
       var phone = response.result.data[i].restaurant_phone;
       var phoneDiv = "<div id=\"phone"+i+"\">"+ phone + "</div>";
 //      console.log(phoneDiv);
-      $('#foo').append(phoneDiv);
+      $('#food').append(phoneDiv);
       var id = response.result.data[i].restaurant_id;
       var idDiv = "<div id=\"id"+i+"\">"+ id + "</div>";
 //      console.log(idDiv);
-      $('#foo').append(idDiv);
-      $('#foo').append("<br>");
+      $('#food').append(idDiv);
+      $('#food').append("<br>");
     }
 //    $(".name").text("Name: " + response.result.data[0].restaurant_name);
 //    $(".address").text("Address: " + response.result.data[0].address.formatted);
