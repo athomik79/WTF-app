@@ -5,7 +5,7 @@ $("#destination").click(function(){alert("button has been pressed");
 var a = $("#search").val();
 var c = a.indexOf(",");
 var d = a.substr(0,c);
-var e = a.substr(c+2,a.length);
+var e = a.substr(c+1,a.length);
 var f = d+","+e;
 alert(f);
 
@@ -28,8 +28,8 @@ $.ajax({
         var lon = response.lon;
         console.log(lon);
 
-        localStorage.setItem("lattitude", JSON.stringify(lat));
-        localStorage.setItem("longitude", JSON.stringify(lon));
+        //localStorage.setItem("lattitude", JSON.stringify(lat));
+        //localStorage.setItem("longitude", JSON.stringify(lon));
 
         GetAddress (lat, lon);
 
@@ -88,7 +88,11 @@ navigator.geolocation.getCurrentPosition(function(pos) {
         zoom: 16,
     });
     currentLat = location.lat;
+    console.log(currentLat);
+    localStorage.setItem("lat",currentLat);
     currentLong = location.long;
+    console.log(currentLong);
+    localStorage.setItem("lon",currentLong);
     let currentLocation = { lat: location.lat, lng: location.long };
     let marker = new google.maps.Marker({
         position: currentLocation,
