@@ -1,9 +1,3 @@
-// Los Angeles, CA 
-//var lat = 34.0522;
-//var lon = -118.2437;
-// Ashburn, VA 20148
-//var lat = 39.0403;
-//var lon = -77.4852;
 var lat = localStorage.getItem("lat");
 var lon = localStorage.getItem("lon");
 var APIKey = "5142591fdf2a45c9927600243a8834f2";
@@ -27,10 +21,9 @@ $.ajax({
 })
    .then(function(response) 
    {
-       console.log(response);
-        var currentDayEl = $("p.currentDay");
-        var currDate = moment().format('MMMM Do YYYY');
-        currentDayEl.text(currDate);
+       var currentDayEl = $("p.currentDay");
+       var currDate = moment().format('MMMM Do YYYY');
+       currentDayEl.text(currDate);
        var iconcode = response.data[0].weather.icon;
        var iconurl = "http://weatherbit.io/static/img/icons/" + iconcode + ".png";
        $("#icon").attr("src",iconurl);

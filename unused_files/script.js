@@ -1,13 +1,7 @@
 var gLat;
 var gLong;
 
-$("#destination").click(function(){alert("button has been pressed");
-var a = $("#search").val();
-var c = a.indexOf(",");
-var d = a.substr(0,c);
-var e = a.substr(c+1,a.length);
-var f = d+","+e;
-alert(f);
+$("#destination").click(function(){
 
 var zip = "22030";
 var APIKey = "5142591fdf2a45c9927600243a8834f2";
