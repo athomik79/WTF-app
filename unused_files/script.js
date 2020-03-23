@@ -70,7 +70,7 @@ $("#find").click(function()
 {initMap()});
 
 $('#weather').click(function(){
-    window.location.href='localinfo.html';
+    window.location.href='aliindex.html';
 });
 
 

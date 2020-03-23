@@ -1,0 +1,71 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WTF - Weather, Food and Travel</title>
+    <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
+    <script src="https://kit.fontawesome.com/2e518622d2.js" crossorigin="anonymous"></script>
+    <style>
+    
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+    #map {
+    height: 400px;
+    width: 80%;
+    margin: 30px auto;
+    }
+    </style>
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+
+  </head>
+  <body>
+  <div class= "headerbg">
+    
+      <div id="call" class="callout large">
+        <div class="row column text-center">
+          <h1>WTF</h1>
+          <h2 class="subheader">Weather and Food for Travelers</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="find-location row medium-8 large-7 columns">
+      <div id="map"></div>
+      <div class="find-location-group" action="">
+        <input id="search" class="find-location-input" type="text" placeholder="Enter location in the following format: City, State">
+        <!-- <input id="destination" class="find-location-submit-button" type="submit" value="Search Destination"> -->
+        
+        <button id="destination" type="button" class="find-location-submit-button">Search Destination</button>
+
+        <p class="or-divider"><span>or</span></p>
+        <!-- <input id="find" class="current-submit-button" type="submit"  value="Current Location"> -->
+
+        <p><button id="find" type="button" class="current-submit-button">Current Location</button></p>
+
+        <!-- <input id="weather" class="current-submit-button" type="submit"  value="Weather / Food"> -->
+
+        <p><button id="weather" type="button" class="current-submit-button">Weather / Food</button></p>
+
+      </div>
+    </div>
+
+    <footer>
+      WTF APP
+    </footer>
+       
+    
+      
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <!-- <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script> -->
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBs0DXvW7g88kD3-OS7i4HXHzl_oPAP1LQ">
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>
+
+
+
